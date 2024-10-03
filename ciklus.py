@@ -1,23 +1,3 @@
-"""import random
-
-ls1 = []
-ls2 = []
-"""
-
-
-"""
-lista = [1,2,3,4,5,6]
-def indexelogep(lista:list):
-    db = 0
-    for index in lista:
-        db += 1
-        if index == 2:
-            return db
-print(indexelogep(lista))
-"""
-
-
-
 
 nev_osztalyzat = []
 jegyek = []
@@ -33,16 +13,11 @@ szamlalo = 0
 for szam in range(kerdes):
     szamlalo += 1
     nevbekerdezes = input(f"Add meg a(z) {szamlalo} diák nevét: ")
-    #nev_osztalyzat.append(nevbekerdezes)
+    
     
     osztalyzat = int(input(f"Add meg {nevbekerdezes} jegyét: "))
     nev_osztalyzat.append((nevbekerdezes, osztalyzat))
     jegyek.append(osztalyzat)
-    
-    
-    
-    
-    
     
 
 szeretne_e_megtekinteni = input("Szeretnéd látni az összes diákot? (igen/nem): ")
@@ -54,10 +29,6 @@ if szeretne_e_megtekinteni == "igen" or "Igen":
         print(lista)
 
 
-
-
-
-
 atlagosjegy_megtekintes = input("Szeretnéd tudni az átlagos jegyet? (igen/nem): ")
 if atlagosjegy_megtekintes == "nem" or "Nem":
     exit
@@ -66,17 +37,11 @@ if atlagosjegy_megtekintes == "igen" or "Igen":
 
 
 
-
-
-
 kerdes_legmagasabb_legalacsonyabb_jegyek = input("Szeretnéd tudni a legmagasabb és legalacsonyabb jegyet? (igen/nem): ")
 if kerdes_legmagasabb_legalacsonyabb_jegyek == "nem" or "Nem":
     exit
 if kerdes_legmagasabb_legalacsonyabb_jegyek == "igen" or "Igen":
     print(f"Legmagasabb jegy: {max(jegyek)} \nLegalacsonyabb jegy: {min(jegyek)}")
-
-
-
 
 
 
