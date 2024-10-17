@@ -1,59 +1,67 @@
-'''1. Feladat: Egyszerű Osztály Definiálása
-    Leírás: Hozz létre egy Dog nevű osztályt, amely a kutyák nevét és életkorát tárolja. Az osztálynak legyen egy metódusa, amely kiírja a kutya adatait.
+import random
 
-    Feladat:
+class Warrior:
+    def __init__(self, name, health, attack_power):
+        self.name = name
+        self.health = health
+        self.attack_power = attack_power
 
-    Készíts egy osztályt, amelynek van egy __init__ metódusa (konstruktor), amely a kutya nevét és életkorát tárolja.
+    def attack(self, other_warrior):
+        # Véletlenszerű sebzés a támadási erő +/- 2 tartományában
+        damage = random.randint(self.attack_power - 2, self.attack_power + 2)
+        other_warrior.health -= damage
+        print(f"{self.name} támadja {other_warrior.name}-t, sebzés: {damage}")
 
-    Hozz létre egy metódust display_info() néven, amely kiírja a kutya nevét és életkorát.
+    def is_alive(self):
+        return self.health > 0
 
-    Példányosítsd az osztályt, és hívd meg a metódust.
-
-
-
-2. Feladat: Banki Számla Osztály
-
-    Leírás: Hozz létre egy BankAccount nevű osztályt, amely banki számlákat reprezentál. Az osztály képes legyen befizetést és pénzfelvételt végrehajtani, valamint a számla    egyenlegét lekérdezni.
-
-    Feladat:
-
-    Hozz létre egy osztályt, amely egy balance változót tárol.
-
-    Készíts metódusokat:
-
-    deposit(amount): hozzáadja az összeget az egyenleghez.
-
-    withdraw(amount): levonja az összeget az egyenlegből, ha van elég pénz a számlán.
-
-    get_balance(): visszaadja az aktuális egyenleget.
-
-    Példányosítsd az osztályt, és végezz rajta befizetést, pénzfelvételt, és kérdezd le az egyenleget.
+    def special_ability(self):
+        # Véletlenszerű aktiválás (25% eséllyel)
+        if random.random() < 0.25:
+            # Kritikus sebzés: duplázza a támadási erőt
+            print(f"{self.name} aktiválja a speciális képességét!")
+            return self.attack_power * 2
+        return self.attack_power
 
 
-3. Feladat: Diák Osztály és Átlag Számítása
-    Leírás: Készíts egy Student nevű osztályt, amely tárolja a diák nevét és jegyeit, és legyen képes kiszámolni az átlagukat.
+def battle(warrior1, warrior2):
+    round_count = 0
 
-    Feladat:
-
-    Az osztály tárolja a diák nevét és egy jegyek listáját.
-    Legyen egy metódus add_grade(grade), amely hozzáad egy jegyet a listához.
-    Legyen egy metódus get_average(), amely kiszámolja és visszaadja az átlagot.
-    Példányosíts egy diákot, adj hozzá jegyeket, és számold ki az átlagát.
-'''
-
-
-class Dog:
-    def __init__(self,nev,eletkor):
-        self.nev = nev
-        self.eletkor = eletkor
+    while warrior1.is_alive() and warrior2.is_alive():
+        round_count += 1
+        print(f"\n--- {round_count}. kör ---")
         
-    def display_info(self):
-        return self.nev, self.eletkor
+        try:
+            # Warrior 1 támad
+            damage = warrior1.special_ability()
+            warrior1.attack(warrior2)
+            print(f"{warrior2.name} életereje: {warrior2.health}")
+
+            if not warrior2.is_alive():
+                print(f"{warrior2.name} legyőzve! {warrior1.name} nyert!")
+                break
+
+            # Warrior 2 támad
+            damage = warrior2.special_ability()
+            warrior2.attack(warrior1)
+            print(f"{warrior1.name} életereje: {warrior1.health}")
+
+            if not warrior1.is_alive():
+                print(f"{warrior1.name} legyőzve! {warrior2.name} nyert!")
+                break
+
+        except Exception as e:
+            print(f"Hiba történt: {e}")
+
+
+if __name__ == "__main__":
+    warrior1 = Warrior("Harcos1", 100, 10)
+    warrior2 = Warrior("Harcos2", 100, 10)
+    
+    battle(warrior1, warrior2)
+
         
-
-
-peldany1 = Dog("vmi", 12)
-
-
+    
+        
 
         
